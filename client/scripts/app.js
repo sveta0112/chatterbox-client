@@ -4,6 +4,8 @@ var App = {
 
   username: 'anonymous',
 
+  rooms: [],
+
   initialize: function() {
     App.username = window.location.search.substr(10);
 
@@ -20,9 +22,16 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
+      $('#chats').empty();
       for (var i = 0; i < data.results.length; i++) {
-        if (data.results[i].username && data.results[i].text) {
-          MessagesView.renderMessage(data.results[i]);
+        if (data.results[i].username && data.results[i].text && data.results[i].roomname) {
+          if ($('#roomlist').val() === data.results[i].roomname) {
+            MessagesView.renderMessage(data.results[i]);
+          }
+          if (!this.rooms.includes(data.results[i].roomname)) {
+            RoomsView.renderRoom(Messages.escapeHTML(data.results[i].roomname));
+            this.rooms.push(data.results[i].roomname);
+          }
         }
       }
       console.log(data);
