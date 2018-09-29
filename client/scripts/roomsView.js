@@ -4,9 +4,14 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
+    // this.renderRoom('Lobby');
+    Rooms.add();
   },
 
-  render: function() {
+  renderRoom: function(roomname) {
+    var $room = $(`<option>${roomname}</option>`);
+    $('#rooms select').append($room);
+  
   }
 
 };
