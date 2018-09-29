@@ -21,7 +21,9 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       for (var i = 0; i < data.results.length; i++) {
-        MessagesView.renderMessage(data.results[i]);
+        if (data.results[i].username && data.results[i].text) {
+          MessagesView.renderMessage(data.results[i]);
+        }
       }
       console.log(data);
       callback();

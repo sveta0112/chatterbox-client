@@ -7,7 +7,7 @@ var Messages = {
   },
 
   createMessage: function(username, text, roomname) {
-    message = new this.Message(username, text, roomname);
+    message = this.Message(username, text, roomname);
     Parse.create(message);
   },
 

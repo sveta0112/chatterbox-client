@@ -8,8 +8,9 @@ var FormView = {
 
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
-    event.preventDefault();
-    Messages.createMessage(App.username, document.getElementById('message').value, 'Lobby');
+    Messages.createMessage(App.username, $('#message').val(), 'Lobby');
+    App.fetch(App.stopSpinner);
+    $('#message').val('');
   },
 
   setStatus: function(active) {
