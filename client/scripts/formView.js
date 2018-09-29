@@ -20,7 +20,7 @@ var FormView = {
   },
 
   refresh: function() {
-    $("#refresh").on("click", function() {
+    $('#refresh').on('click', function() {
       App.fetch();
     });
   }
